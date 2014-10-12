@@ -30,7 +30,6 @@ unzip master.zip
 mv /usr/bin/xscreensaver-getimage-file /usr/bin/xscreensaver-getimage-file.bak  
 cp  /mnt/screensaver/linux_screensaver_by_pics/deploy_data/xscreensaver-getimage-file /usr/bin/xscreensaver-getimage-file   
 chmod a+x /usr/bin/xscreensaver-getimage-file  
-  
 for testing  
 /usr/bin/xscreensaver-getimage-file /mnt/screensaver/test  
 
@@ -59,7 +58,6 @@ echo start_download
 >for testing:  
 /mnt/screensaver/linux_screensaver_by_pics/test_data/start_server.sh  
 /mnt/screensaver/linux_screensaver_by_pics/deploy_data/download_pics.pl  
-  
 \# m h  dom mon dow   command  
 @reboot xscreensaver -no-splash -no-capture-stderr  
 @reboot /mnt/screensaver/linux_screensaver_by_pics/deploy_data/download_pics.pl  
