@@ -21,6 +21,7 @@ screensaver for Linux to show some pictures sequentially.
 cd /mnt/screensaver  
 wget https://github.com/itech001/linux_screensaver_by_pics/archive/master.zip  
 unzip master.zip  
+cd linux_screensaver_by_pics  
 
 2. install perl modules
 >cpan -fi JSON Data::GUID Sys::HostAddr
@@ -31,7 +32,7 @@ mv /usr/bin/xscreensaver-getimage-file /usr/bin/xscreensaver-getimage-file.bak
 cp  /mnt/screensaver/linux_screensaver_by_pics/deploy_data/xscreensaver-getimage-file /usr/bin/xscreensaver-getimage-file   
 chmod a+x /usr/bin/xscreensaver-getimage-file  
 for testing  
-/usr/bin/xscreensaver-getimage-file /mnt/screensaver/test  
+/usr/bin/xscreensaver-getimage-file /mnt/screensaver/linux_screensaver_by_pics/result_data/current  
 
 4. cp config  (for ubuntu guest)
 >SKEL=/etc/skel/  
