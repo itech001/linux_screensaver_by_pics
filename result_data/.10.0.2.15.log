@@ -1,0 +1,24 @@
+url:http://localhost:8000/online_pics.json
+save to:/home/adminuser/xscreensaver_by_pics/result_data
+max delay:0
+start time: 2014-09-20 08:27:48
+start time after delay: 2014-09-20 08:27:48
+$VAR1 = {
+          'image_list' => [
+                            'http://img3.3lian.com/2013/c2/80/d/1.jpg',
+                            'http://www.bz889.com/uploads/allimg/120613/1-1206131Z537.jpg'
+                          ],
+          'image_default' => [
+                               'http://pic1.bbzhi.com/renwenbizhi/aozhouxinifengjingsheyingji/human_sydney_australia_2996_10.jpg'
+                             ],
+          'version' => 4
+        };
+latest version is 4
+old version is -1
+download http://img3.3lian.com/2013/c2/80/d/1.jpg successfully to /home/adminuser/xscreensaver_by_pics/result_data/885A4F5E-40C1-11E4-BD21-BEC263F0E6D6/0.jpg
+download http://www.bz889.com/uploads/allimg/120613/1-1206131Z537.jpg successfully to /home/adminuser/xscreensaver_by_pics/result_data/885A4F5E-40C1-11E4-BD21-BEC263F0E6D6/1.jpg
+remove /home/adminuser/xscreensaver_by_pics/result_data/current.bak
+rename from /home/adminuser/xscreensaver_by_pics/result_data/current to /home/adminuser/xscreensaver_by_pics/result_data/current.bak
+rename from /home/adminuser/xscreensaver_by_pics/result_data/885A4F5E-40C1-11E4-BD21-BEC263F0E6D6 to /home/adminuser/xscreensaver_by_pics/result_data/current
+symlink from /home/adminuser/xscreensaver_by_pics/result_data/current to /home/adminuser/xscreensaver_by_pics/result_data/used
+end time: 2014-09-20 08:27:52

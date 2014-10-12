@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=0.9.4
+Type=Application
+Name=xscreensaver_mytest
+Comment=
+Exec=/mnt/screensaver/linux_screensaver_by_pics/test_data/start_server.sh
+OnlyShowIn=XFCE;
+StartupNotify=false
+Terminal=false
+Hidden=false
+
