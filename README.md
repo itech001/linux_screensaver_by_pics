@@ -24,7 +24,7 @@ unzip master.zip
 cd linux_screensaver_by_pics  
 
 2. install perl modules
->cpan -fi JSON Data::GUID Sys::HostAddr
+>cpan -fi JSON Data::GUID Sys::HostAddr File::NFSLock   
 
 3. install xscreensaver
 >apt-get -y install xscreensaver xscreensaver-gl  
