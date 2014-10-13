@@ -6,10 +6,10 @@ screensaver for Linux to show some pictures sequentially.
 
 ## Requirements##
 * linux screensaver to show some pictures sequentially;
-* get pictures from url json file;
+* get pictures from url json file when the machine reboot and every 9:00am;
 * all machines in farm has same setting, and they will run the image download script at the same time;  
-* the script must has random delay before downloading the images, to avoid too many server requests at the same time;
-* /mnt/screensaver is nfs and shared for all machines;
+* the script must has random minutes delay before downloading the images, to avoid too many server requests at the same time;
+* /mnt/screensaver is used to save downloaded image, it is nfs disk and shared for all machines;
 * if one machine is running for download, other machines will wait;
 * if the images are downloaded by one machine, other machines will do nothing;
 
