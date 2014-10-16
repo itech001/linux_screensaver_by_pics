@@ -112,7 +112,7 @@ my $version_old = 0;
 my $img_list = [];
 my $img_default = [];
 $version = $decoded_json->{"version"};
-$img_list = $decoded_json->{"image_list"};
+$img_list = $decoded_json->{"pictures"};
 $img_default = $decoded_json->{"image_default"};
 if ( ! defined($version) || !defined($img_list) || !defined($img_default)){
   &log_error( "json format error\n" );
