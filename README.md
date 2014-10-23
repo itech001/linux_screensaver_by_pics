@@ -80,3 +80,6 @@ vi /etc/apparmor.d/abstractions/lightdm
 >xscreensaver-command -activate  
 
 ## testing ##
+
+## reference##
+http://www.jwz.org/xscreensaver/faq.html  

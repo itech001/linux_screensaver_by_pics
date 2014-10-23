@@ -80,7 +80,7 @@ if($random_delay > 0){
 
 
 ### checking if other processes are running
-my $run_flag = "$save_to/running";
+my $run_flag = "$save_to/.running";
 if(-e "$run_flag"){
   &log("other instances are running, will wait $timeout minutes and then continue\n");
   sleep($timeout * 60); # assume the script finishes in timeout minutes
