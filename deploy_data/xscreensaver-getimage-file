@@ -306,11 +306,11 @@ sub write_cache($) {
       error ("unable to rewind $cache_file_name: $!");
 
     if ($#all_files >= 0) {
-      print $cache_fd "$dir\n";
+      #print $cache_fd "$dir\n";
       foreach (@all_files) {
         my $f = $_; # stupid Perl. do this to avoid modifying @all_files!
         $f =~ s@^\Q$dir\L/@@so || die;  # remove $dir from front
-        print $cache_fd "$f\n";
+        #print $cache_fd "$f\n";
       }
     }
 

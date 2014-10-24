@@ -13,7 +13,19 @@ screensaver for Linux to show some pictures sequentially.
 * if one machine is running for download, other machines will wait;
 * if the images are downloaded by one machine, other machines will do nothing;
 
-
+## Deploy steps ##  
+install :  
+cpan -fi JSON Data::GUID Sys::HostAddr File::NFSLock  
+apt-get -y install xscreensaver xscreensaver-gl  
+copy below files:  
+/etc/guest-session/skel/.xscreensaver  
+/etc/guest-session/skel/.xscreensaver-image-index  
+cron on root:  
+@reboot xscreensaver -no-splash -no-capture-stderr  
+@reboot /mnt/screensaver/linux_screensaver_by_pics/deploy_data/download_pics.pl  
+0 9 * * * /mnt/screensaver/linux_screensaver_by_pics/deploy_data/download_pics.pl  
+my other scripts:  
+/mnt/screensaver/  
 
 ## Deploy steps##
 1. download linux_screensaver_by_pics
@@ -82,4 +94,6 @@ vi /etc/apparmor.d/abstractions/lightdm
 ## testing ##
 
 ## reference##
+http://www.jwz.org/xscreensaver/man.html
 http://www.jwz.org/xscreensaver/faq.html  
+https://help.ubuntu.com/community/CustomizeGuestSession
