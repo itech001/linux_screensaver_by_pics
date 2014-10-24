@@ -23,7 +23,7 @@ my $random_delay = 5; #minutes
 my $verbose = 0;
 my $help  = 0; 
 my $debug = 0;
-my $timeout = 15; #15 minutes
+my $timeout = 15; #15 minutes for this script
 my $log_file = '';
 my $progname = $0; $progname =~ s@.*/@@g;
 
@@ -62,10 +62,10 @@ $log_file = "$save_to/.${log_name}.log";
 open(my $fh, "+>", "$log_file");
 if(!$fh){ print STDERR "failed to open log file $log_file\n";}
 
-&log("url:$url\n");
-&log("save to:$save_to\n");
-&log("max delay minutes:$random_delay\n");
-&log("log file is $log_file\n");
+&log("url: $url\n");
+&log("save to: $save_to\n");
+&log("max delay: $random_delay minutes\n");
+&log("log file: $log_file\n");
 
 
 ### random delay to avoid too many server requests at the same time
@@ -242,6 +242,8 @@ sub download_pics{
     }
     return 0;
   }else{
+    &log("download fail, remove tmp $save_to_tmp\n");
+    system("rm -rf $save_to_tmp");
     return 1;
   }
 }
@@ -254,7 +256,7 @@ sub end{
   if($code){
     &log("FAIL\n");
   }else{
-    &log("SUCCESS");
+    &log("SUCCESS\n");
   }
   close $fh;
   exit $code;
