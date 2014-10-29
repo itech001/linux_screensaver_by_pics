@@ -84,9 +84,26 @@ if($random_delay > 0){
 
 ### checking if other processes are running
 my $run_flag = "$save_to/.running";
-if(-e "$run_flag"){
-  &log("other instances are running, will wait $timeout minutes and then continue\n");
-  sleep($timeout * 60); # assume the script finishes in timeout minutes
+my $times = 0;
+while(-e "$run_flag"){
+  my $threshhold = $timeout * 60;
+  my $currenttime = time;
+  my $mtime = (stat($run_flag))[9];
+  my $delta =  $currenttime - $mtime;
+  &log("the running flag was created " . $delta/60 . " minutes ago\n");
+  if( ($delta) > $threshhold){
+      &log("the running flag is too old, touch running flag file $run_flag\n");
+      system("touch $run_flag; chmod a+w $run_flag");
+      last;
+  }else{
+    if($times >= 3){
+      &log("tried 3 times, but still has new running flags, will exit\n");
+      &end(1);
+    }
+    &log("other instances are running, will wait $timeout minutes and then check running flag again\n");
+    sleep($timeout * 60); # assume the script finishes in timeout minutes
+  }
+  $times++; 
 }
 
 if(!-e "$run_flag"){
