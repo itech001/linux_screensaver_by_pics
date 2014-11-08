@@ -1,5 +1,5 @@
 # XScreenSaver Preferences File
-# Written by xscreensaver-demo 5.26 for adminuser on Fri Sep 19 09:36:58 2014.
+# Written by xscreensaver-demo 5.15 for guest-IWJFjv on Sat Nov  8 03:12:07 2014.
 # http://www.jwz.org/xscreensaver/
 
 timeout:	0:01:00
@@ -17,7 +17,7 @@ demoCommand:	xscreensaver-demo
 prefsCommand:	xscreensaver-demo -prefs
 nice:		10
 memoryLimit:	0
-fade:		True
+fade:		False
 unfade:		False
 fadeSeconds:	0:00:03
 fadeTicks:	20
@@ -186,8 +186,8 @@ programs:								      \
   GL: 				gleidescope -root			    \n\
   GL: 				glknots -root				    \n\
   GL: 				glmatrix -root				    \n\
-- GL: 				glslideshow -root -duration 7 -zoom 100	      \
-				  -pan 5 -fade 1 -no-letterbox		    \n\
+- GL: 				glslideshow -root -delay 0 -duration 7	      \
+				  -zoom 100 -pan 7 -fade 0 -no-letterbox    \n\
   GL: 				hypertorus -root			    \n\
 - GL: 				jigglypuff -root			    \n\
 				metaballs -root				    \n\
