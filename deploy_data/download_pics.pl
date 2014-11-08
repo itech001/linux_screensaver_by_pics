@@ -287,6 +287,11 @@ sub end{
   if( -e "$run_flag"){ system("rm $run_flag"); &log("remove running flag $run_flag\n");}
   my $end_time = strftime "%Y-%m-%d %H:%M:%S", localtime;
   &log("end time: $end_time\n");
+  system("rm -rf $save_to_tmp_g") if -e "$save_to_tmp_g";
+  if ( !-e "$save_to_current" ) {
+     my $ret = system("rm -rf $save_to_used && ln -s $save_to_default $save_to_used");
+     if($ret){&log("failed to create link from $save_to_default to $save_to_used\n");}
+  }
   if($code){
     &log("FAIL\n");
   }else{
