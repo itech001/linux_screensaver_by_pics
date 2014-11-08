@@ -32,7 +32,6 @@ cd /mnt/screensaver
 wget https://github.com/itech001/linux_screensaver_by_pics/archive/master.zip  
 unzip master.zip  
 cd linux_screensaver_by_pics  
-
 mv /usr/bin/xscreensaver-getimage-file /usr/bin/xscreensaver-getimage-file.bak  
 cp  /mnt/screensaver/linux_screensaver_by_pics/deploy_data/xscreensaver-getimage-file /usr/bin/xscreensaver-getimage-file  
 chmod a+x /usr/bin/xscreensaver-getimage-file  
@@ -55,13 +54,10 @@ xscreensaver -no-splash -no-capture-stderr &
 >manually testing:  
 /mnt/screensaver/linux_screensaver_by_pics/test_data/start_server.sh  
 /mnt/screensaver/linux_screensaver_by_pics/deploy_data/download_pics.pl  
-
 \#below one is for testing 
 @reboot /mnt/screensaver/linux_screensaver_by_pics/test_data/start_server.sh
-
 \# dont need for guest user 
 @reboot xscreensaver -no-splash -no-capture-stderr & 
-
 @reboot /mnt/screensaver/linux_screensaver_by_pics/deploy_data/download_pics.pl  
 0 9 * * * /mnt/screensaver/linux_screensaver_by_pics/deploy_data/download_pics.pl  
 
@@ -69,7 +65,6 @@ xscreensaver -no-splash -no-capture-stderr &
 >mkdir /var/guest-data  
 chmod 777 /var/guest-data  
 chmod 777 /mnt/screensaver  
-
 vi /etc/apparmor.d/abstractions/lightdm  
   /var/guest-data/** rw, # allow to store files permanently  
   /mnt/ rwlkmix,  
