@@ -32,7 +32,7 @@ dpmsOff:	4:00:00
 grabDesktopImages:  False
 grabVideoFrames:    False
 chooseRandomImages: True
-imageDirectory:	/mnt/screensaver/linux_screensaver_by_pics/result_data/used
+imageDirectory:	/mnt/screensaver/used
 
 mode:		one
 selected:	142
