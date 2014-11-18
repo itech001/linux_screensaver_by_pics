@@ -1,12 +1,12 @@
-#!/usr/bin/perl 
+#!/usr/bin/perl
 
-use strict; # Good practice 
-use warnings; # Good practice 
-use LWP::Simple; # from CPAN 
+use strict; # Good practice
+use warnings; # Good practice
+use LWP::Simple; # from CPAN
 use LWP::Simple qw($ua); #from CPAN
-use JSON qw( decode_json ); # From CPAN 
-use Data::Dumper; # Perl core module 
-use File::Path qw(make_path remove_tree); 
+use JSON qw( decode_json ); # From CPAN
+use Data::Dumper; # Perl core module
+use File::Path qw(make_path remove_tree);
 use POSIX qw(strftime);
 use Getopt::Long;
 use Data::GUID; #from CPAN
@@ -16,12 +16,12 @@ use Fcntl ':flock';
 use Fcntl qw(LOCK_EX LOCK_NB);
 use File::NFSLock;
 
-### get options 
-my $url = 'http://localhost:8000/online_pics.json'; 
+### get options
+my $url = 'http://localhost:8000/online_pics.json';
 my $save_to = "/mnt/screensaver/";
 my $random_delay = 5; #minutes
 my $verbose = 0;
-my $help  = 0; 
+my $help  = 0;
 my $debug = 0;
 my $timeout = 15; #15 minutes for this script
 my $log_file = '';
@@ -47,6 +47,7 @@ if(!$result){ print STDERR "parameters error\n"; &usage(); exit 1;}
 
 if($help){&usage(); exit 0;}
 
+
 ### check parameters
 if(!-e "$save_to"){
  my $err;
@@ -58,6 +59,7 @@ my $save_to_default = "$save_to/default";
 my $save_to_used = "$save_to/used";
 if(!-e "$save_to_current") { make_path("$save_to_current");}
 if(!-e "$save_to_default") { make_path("$save_to_default");}
+my $save_to_tmp_g = '';
 
 my $sysaddr = Sys::HostAddr->new();
 my $log_name = $sysaddr->main_ip();
@@ -103,7 +105,7 @@ while(-e "$run_flag"){
     &log("other instances are running, will wait $timeout minutes and then check running flag again\n");
     sleep($timeout * 60); # assume the script finishes in timeout minutes
   }
-  $times++; 
+  $times++;
 }
 
 if(!-e "$run_flag"){
@@ -141,6 +143,7 @@ if ( ! defined($version) || !defined($img_list)){
 }
 
 
+
 ### check if need download
 &log( "latest version is $version\n" );
 my $version_file = "$save_to/.version_file";
@@ -159,14 +162,14 @@ if(scalar(@$img_list) == 0 ){
      #unlink("$save_to_used") or &log("failed to remove file $save_to_used: $!\n");
      my $ret = system("rm -rf $save_to_used");
      if($ret){&log("failed to remove link $save_to_used\n");}
-  } 
-  #symlink("$save_to_default", "$save_to_used");   
+  }
+  #symlink("$save_to_default", "$save_to_used");
   my $ret = system("ln -s $save_to_default $save_to_used");
   if($ret){&log("failed to create link from $save_to_default to $save_to_used\n");}
   end(0);
 }
 
-my $save_to_tmp_g = '';
+#my $save_to_tmp_g = '';
 
 ### download pics with timeout setting
 eval {
@@ -174,10 +177,10 @@ eval {
 
     my $to = $timeout - $random_delay;
     $to = $timeout if $to <= 0;
-    alarm $to * 60; 
+    alarm $to * 60;
     &log("send alarm singal to timeout after $to minutes\n");
 
-    #download 
+    #download
     my $r = 1;
     $r = download_pics($img_list,$save_to_current,1);
     if(!$r){
@@ -185,10 +188,12 @@ eval {
       &log("download successfully\n");
       end(0);
     }else{
+      &log("delete tmp folder $save_to_tmp_g\n");
+      system("rm -rf $save_to_tmp_g") if -e "$save_to_tmp_g";
       &log_error("download failed,will exit\n");
       end(1);
     }
-    
+
     # restet alarm
     alarm 0;
     1;
@@ -199,7 +204,7 @@ eval {
       system("rm -rf $save_to_tmp_g") if -e "$save_to_tmp_g";
       end(1);
     }else{
-      &log("download failed for reason $@, will exit\n"); 
+      &log("download failed for reason $@, will exit\n");
       &log("download fail, remove tmp $save_to_tmp_g\n");
       system("rm -rf $save_to_tmp_g") if -e "$save_to_tmp_g";
       end(1);
@@ -214,18 +219,24 @@ end(1);
 ### common functions
 sub download_pic{
   my ($img,$filename) = @_;
-  $ua->timeout (120);  # 2 minutes for eery image download 
+  $ua->timeout (120);  # 2 minutes for eery image download
   my $rc = getstore($img, $filename);
   if (is_error($rc)) {
     return 1, "download <$img> failed with $rc\n";
   }else{
-    return 0, "download $img successfully to $filename\n";
+    if(-e "$filename"){
+      return 0, "download $img successfully to $filename\n";
+    }else{
+      return 1, "The file is not existed, failed to download $img\n";
+    }
   }
 }
+
+
 sub download_pics{
   my ($img_list,$save_to_dir,$is_update_used_link) = @_;
   my $guid = Data::GUID->new;
-  my $tmp = $guid->as_string; 
+  my $tmp = $guid->as_string;
   my $save_to_tmp = dirname($save_to_dir) . '/' . $tmp;
   if(!-e "$save_to_tmp") { make_path("$save_to_tmp");}
   $save_to_tmp_g = $save_to_tmp;
@@ -243,7 +254,7 @@ sub download_pics{
       &end(1);
      }else{
        &log("the image size is ok\n");
-     } 
+     }
     $i++;
   }
   if($s == 0){
@@ -262,15 +273,15 @@ sub download_pics{
     #rename($save_to_tmp,$save_to_dir);
     $ret = system("mv $save_to_tmp $save_to_dir");
     if($ret){&log("failed to move from $save_to_tmp to $save_to_dir\n");}
-    
+
     if($is_update_used_link){
       &log("symlink from $save_to_dir to $save_to_used\n");
       if ( -l "$save_to_used" ) {
          #unlink("$save_to_used") or &log("failed to remove file $save_to_used: $!\n");
          $ret = system("rm -rf $save_to_used");
          if($ret){&log("failed to remove link $save_to_used\n");}
-      } 
-      #symlink($save_to_dir, $save_to_used);  
+      }
+      #symlink($save_to_dir, $save_to_used);
       $ret = system("ln -s $save_to_dir $save_to_used");
       if($ret){&log("failed to create link from $save_to_dir to $save_to_used\n");}
     }
@@ -287,11 +298,17 @@ sub end{
   if( -e "$run_flag"){ system("rm $run_flag"); &log("remove running flag $run_flag\n");}
   my $end_time = strftime "%Y-%m-%d %H:%M:%S", localtime;
   &log("end time: $end_time\n");
-  system("rm -rf $save_to_tmp_g") if -e "$save_to_tmp_g";
-  if ( !-e "$save_to_current" ) {
-     my $ret = system("rm -rf $save_to_used && ln -s $save_to_default $save_to_used");
+  system("chmod a+w $log_file");
+  system("chmod a+w $version_file");
+  if ( ! -e "$save_to_current") {
+     &log("current is not eixsted, switch to deafult\n");
+     my $ret = system("rm -rf $save_to_used");
+     if($ret){&log("failed to remove link $save_to_used\n");}
+     my $ret = system("ln -s $save_to_default $save_to_used");
      if($ret){&log("failed to create link from $save_to_default to $save_to_used\n");}
   }
+  &log("delete tmp folder $save_to_tmp_g\n") if -e "$save_to_tmp_g";
+  system("rm -rf $save_to_tmp_g") if -e "$save_to_tmp_g";
   if($code){
     &log("FAIL\n");
   }else{
@@ -310,10 +327,11 @@ sub log_error{
   print $fh $msg if defined $fh;
   if($debug){print STDERR $msg;}
 }
+
 sub get_current_version(){
   if(!-e "$version_file") { return -1;}
   open(my $f, '<', $version_file);
-  if(!defined($f)){ 
+  if(!defined($f)){
     &log("Could not open file '$version_file' with the error $!");
     return -1;
   }
@@ -339,6 +357,7 @@ sub save_current_version($){
  $lock->unlock() if $lock;
  &log("current version $version was saved in $version_file\n");
 }
+
  
 sub large_enough_p($) {
   my ($file) = @_;

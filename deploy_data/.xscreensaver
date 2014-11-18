@@ -2,37 +2,37 @@
 # Written by xscreensaver-demo 5.15 for guest-IWJFjv on Sat Nov  8 03:12:07 2014.
 # http://www.jwz.org/xscreensaver/
 
-timeout:	0:01:00
-cycle:		0:10:00
-lock:		False
-lockTimeout:	0:00:00
-passwdTimeout:	0:00:30
-visualID:	default
+timeout:        0:01:00
+cycle:          0:10:00
+lock:           False
+lockTimeout:    0:00:00
+passwdTimeout:  0:00:30
+visualID:       default
 installColormap:    True
-verbose:	False
-timestamp:	True
-splash:		True
-splashDuration:	0:00:05
-demoCommand:	xscreensaver-demo
-prefsCommand:	xscreensaver-demo -prefs
-nice:		10
-memoryLimit:	0
-fade:		False
-unfade:		False
-fadeSeconds:	0:00:03
-fadeTicks:	20
-captureStderr:	True
+verbose:        False
+timestamp:      True
+splash:         True
+splashDuration: 0:00:05
+demoCommand:    xscreensaver-demo
+prefsCommand:   xscreensaver-demo -prefs
+nice:           10
+memoryLimit:    0
+fade:           False
+unfade:         False
+fadeSeconds:    0:00:00
+fadeTicks:      0
+captureStderr:  True
 ignoreUninstalledPrograms:False
-font:		*-medium-r-*-140-*-m-*
-dpmsEnabled:	False
-dpmsQuickOff:	False
-dpmsStandby:	2:00:00
-dpmsSuspend:	2:00:00
-dpmsOff:	4:00:00
+font:           *-medium-r-*-140-*-m-*
+dpmsEnabled:    False
+dpmsQuickOff:   False
+dpmsStandby:    2:00:00
+dpmsSuspend:    2:00:00
+dpmsOff:        4:00:00
 grabDesktopImages:  False
 grabVideoFrames:    False
 chooseRandomImages: True
-imageDirectory:	/mnt/screensaver/used
+imageDirectory: /mnt/screensaver/used
 
 mode:		one
 selected:	142
