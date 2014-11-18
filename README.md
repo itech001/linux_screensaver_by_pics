@@ -55,7 +55,7 @@ xscreensaver -no-splash -no-capture-stderr &
 /mnt/screensaver/linux_screensaver_by_pics/test_data/start_server.sh  
 /mnt/screensaver/linux_screensaver_by_pics/deploy_data/download_pics.pl  
 @reboot bash -c "/home/ss/linux_screensaver_wrapper.sh /mnt/screensaver/linux_screensaver_by_pics/test_data/start_server.sh > /home/ss/screensaver_test_server.log 2>&1"  
-@reboot bach -c "/home/ss/linux_screensaver_wrapper.sh /mnt/screensaver/linux_screensaver_by_pics/deploy_data/download_pics.pl > home/ss/screensaver_download.log 2>&1"  
+@reboot bash -c "/home/ss/linux_screensaver_wrapper.sh /mnt/screensaver/linux_screensaver_by_pics/deploy_data/download_pics.pl > /home/ss/screensaver_download.log 2>&1"  
 0 12 * * * bash -c "/home/ss/linux_screensaver_wrapper.sh /mnt/screensaver/linux_screensaver_by_pics/deploy_data/download_pics.pl > /home/ss/screensaver_download2.log 2>&1"   
 
 7. set dir permission for guest user (for ubuntu guest) 
