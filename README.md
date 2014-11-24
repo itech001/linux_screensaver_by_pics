@@ -72,6 +72,6 @@ vi /etc/apparmor.d/abstractions/lightdm
 ## testing ##
 
 ## reference##
-http://www.jwz.org/xscreensaver/man.html
+http://www.jwz.org/xscreensaver/man.html  
 http://www.jwz.org/xscreensaver/faq.html  
-https://help.ubuntu.com/community/CustomizeGuestSession
+https://help.ubuntu.com/community/CustomizeGuestSession  
