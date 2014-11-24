@@ -4,7 +4,7 @@ linux_screensaver_by_pics
 screensaver for Linux to show some pictures sequentially.  
 
 
-## Requirements##
+##Requirements
 * This program need run on many farm machines;
 * Download pictures by json url when the machine boot and every 9am;
 * Show the downloaded pictures sequentially by screensaver;
@@ -14,7 +14,7 @@ screensaver for Linux to show some pictures sequentially.
 * If the images are downloaded by one machine, other machines will do nothing;
 
 
-## Deploy steps##  
+##Deploy steps
 Testing on ubuntu 14.04
 
 1 install perl modules ( root)
@@ -69,9 +69,9 @@ vi /etc/apparmor.d/abstractions/lightdm
 9 reboot system and verity result (guest)
 >xscreensaver-command -activate  
 
-## testing ##
+##Testing
 
-## reference##
+##Reference
 http://www.jwz.org/xscreensaver/man.html  
 http://www.jwz.org/xscreensaver/faq.html  
 https://help.ubuntu.com/community/CustomizeGuestSession  
