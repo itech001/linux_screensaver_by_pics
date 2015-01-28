@@ -75,7 +75,7 @@ vi /etc/apparmor.d/abstractions/lightdm
 1. check if /mnt/screensaver mounted
 >/mnt/screensaver/linux_screensaver_by_pics/deploy_data/linux_screensaver_wrapper.sh:  
 ```
-\#!/bin/bash
+>\#!/bin/bash
 for (( i=1; i <= 5; i++ ))
 do
     if mountpoint -q /mnt/screensaver
@@ -89,9 +89,9 @@ do
     echo "sleep 20"
     sleep 20
 ```
-crons need be chagned to:
-@reboot /mnt/screensaver/linux_screensaver_by_pics/deploy_data/linux_screensaver_wrapper.sh /mnt/screensaver/linux_screensaver_by_pics/deploy_data/download_pics.pl  > ~/.linux_screensaver_wrapper.log 2>&1 
-0 9 * * * /mnt/screensaver/linux_screensaver_by_pics/deploy_data/linux_screensaver_wrapper.sh /mnt/screensaver/linux_screensaver_by_pics/deploy_data/download_pics.pl > ~/.linux_screensaver_wrapper.log 2>&1
+crons need be chagned to:  
+@reboot /mnt/screensaver/linux_screensaver_by_pics/deploy_data/linux_screensaver_wrapper.sh /mnt/screensaver/linux_screensaver_by_pics/deploy_data/download_pics.pl  > ~/.linux_screensaver_wrapper.log 2>&1   
+0 9 * * * /mnt/screensaver/linux_screensaver_by_pics/deploy_data/linux_screensaver_wrapper.sh /mnt/screensaver/linux_screensaver_by_pics/deploy_data/download_pics.pl > ~/.linux_screensaver_wrapper.log 2>&1  
 
 ##issues and logs
 1. check mount log
