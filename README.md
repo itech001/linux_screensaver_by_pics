@@ -73,8 +73,30 @@ vi /etc/apparmor.d/abstractions/lightdm
 >xscreensaver-command -activate  
 
 1. check if /mnt/screensaver mounted
+>/mnt/screensaver/linux_screensaver_by_pics/deploy_data/linux_screensaver_wrapper.sh:
+#!/bin/bash
+for (( i=1; i <= 5; i++ ))
+do
+    if mountpoint -q /mnt/screensaver
+        then
+            echo "download script will start!"
+            echo "$1"
+            $1
+            echo "download script is started!"
+            break
+        fi
+    echo "sleep 20"
+    sleep 20
+crons need be chagned to:
+@reboot /mnt/screensaver/linux_screensaver_by_pics/deploy_data/linux_screensaver_wrapper.sh /mnt/screensaver/linux_screensaver_by_pics/deploy_data/download_pics.pl  > ~/.linux_screensaver_wrapper.log 2>&1 
+0 9 * * * /mnt/screensaver/linux_screensaver_by_pics/deploy_data/linux_screensaver_wrapper.sh /mnt/screensaver/linux_screensaver_by_pics/deploy_data/download_pics.pl > ~/.linux_screensaver_wrapper.log 2>&1
 
 ##issues and logs
+1. check mount log
+~/.linux_screensaver_wrapper.log ( for ss acount)
+
+1. check other logs
+/mnt/screensaver/linux_screensaver_by_pics/.your_ip.log
 
 ##Reference
 http://www.jwz.org/xscreensaver/man.html  
