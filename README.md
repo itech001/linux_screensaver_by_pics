@@ -74,7 +74,7 @@ vi /etc/apparmor.d/abstractions/lightdm
 
 1. check if /mnt/screensaver mounted
 >/mnt/screensaver/linux_screensaver_by_pics/deploy_data/linux_screensaver_wrapper.sh:
-#!/bin/bash
+\#!/bin/bash
 for (( i=1; i <= 5; i++ ))
 do
     if mountpoint -q /mnt/screensaver
